@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>中学理科一問一答</title>
+    <link rel="stylesheet" href="science.css">
+</head>
+<body>
+    <h1>中学理科単語一問一答</h1>
+    <p>挑戦したい問題の範囲を選択してください。</p>
+    <table id="range" rules="all" frame="border" border="3">
+        <tr>
+                <td><button id="aa">1年 生物</button></td>
+                <td><button id="ab">1年 化学</button></td>
+                <td><button id="ac">1年 物理</button></td>
+                <td><button id="ad">1年 地学</button></td>
+                <td><button id="ae">1年 全範囲</button></td>
+            </tr>
+        <tr>
+                <td><button id="ba">2年 生物</button></td>
+                <td><button id="bb">2年 化学</button></td>
+                <td><button id="bc">2年 物理</button></td>
+                <td><button id="bd">2年 地学</button></td>
+                <td><button id="be">2年 全範囲</button></td>
+            </tr>
+        <tr>
+                <td><button id="ca">3年 生物</button></td>
+                <td><button id="cb">3年 化学</button></td>
+                <td><button id="cc">3年 物理</button></td>
+                <td><button id="cd">3年 地学</button></td>
+                <td><button id="ce">3年 全範囲</button></td>
+            </tr>
+        <tr>
+                <td><button id="a">1~3年 生物</button></td>
+                <td><button id="b">1~3年 化学</button></td>
+                <td><button id="c">1~3年 物理</button></td>
+                <td><button id="d">1~3年 地学</button></td>
+                <td><button id="e">1~3年 全範囲</button></td>
+            </tr>        
+    </table>
+    同じところを2回以上クリックすると問題が変わります。
+    <div id="question-area"></div>
+    <br><span style="font-weight:bold; font-size:120%">解答欄</span> 
+    <br><span style="background-color:yellow">解答は漢字で入力してください。ひらがなやカタカナが含まれる場合にはすべて全角で、アルファベットや数字が含まれる場合にはその部分だけ半角で入力してください。</span>
+    <table id="answer-area" rules="all" frame="border" border="3">
+        <tr>
+                <td>(1)</td>
+                <td><input type="text" id="Answer1" size="20" maxlength="10"></td>
+                <td>(2)</td>
+                <td><input type="text" id="Answer2" size="20" maxlength="10"></td>
+                <td>(3)</td>
+                <td><input type="text" id="Answer3" size="20" maxlength="10"></td>
+    
+            </tr>
+        <tr>
+                <td>(4)</td>
+                <td><input type="text" id="Answer4" size="20" maxlength="10"></td>
+                <td>(5)</td>
+                <td><input type="text" id="Answer5" size="20" maxlength="10"></td>
+                <td>(6)</td>
+                <td><input type="text" id="Answer6" size="20" maxlength="10"></td>
+    
+            </tr>
+        </tr>
+            <tr>
+                <td>(7)</td>
+                <td><input type="text" id="Answer7" size="20" maxlength="10"></td>
+                <td>(8)</td>
+                <td><input type="text" id="Answer8" size="20" maxlength="10"></td>
+                <td>(9)</td>
+                <td><input type="text" id="Answer9" size="20" maxlength="10"></td>
+        </tr>
+            <tr>
+                <td>(10)</td>
+                <td><input type="text" id="Answer10" size="20" maxlength="10"></td>
+                <td colspan="2"><button id="textreset">入力消去</button></td>
+                <td colspan="2"><button id="check">答え合わせ</button></td>
+        </tr>
+    </table>
+    <div id="result-area"></div>
+    <script src="science.js"></script>
+</body>
+</html>
