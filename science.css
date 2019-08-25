@@ -1,0 +1,61 @@
+body{
+    background-color:green;
+    text-align:center;
+    margin:auto;
+    font-family:'Century Gothic','游ゴシック';
+    width:1250px;
+}
+table{
+    background-color:green;
+    text-align:center;
+    margin:auto;
+    font-family:'Century Gothic','游ゴシック';
+    width:1000px;
+}
+button{
+    font-size:100%;
+    font-family:'Century Gothic','游ゴシック';
+    border-style:none;
+    height:30px;
+    width:200px;
+}
+#aa,#ba,#ca{
+    background-color:yellow;
+}
+#ab,#bb,#cb{
+    background-color:pink;
+}
+#ac,#bc,#cc{
+    background-color:greenyellow;
+}
+#ad,#bd,#cd{
+    background-color:rgb(212, 57, 218);
+}
+#e{
+    background-color:skyblue;
+}
+#question-area{
+    background-color:rgb(0, 247, 255);
+    text-align:left;
+}
+#answer-area{
+    background-color:springgreen;
+    color:black;
+    margin: auto;
+    width:600px;
+}
+input{
+    height: 20px;
+}
+#textreset{
+    background-color:yellowgreen;
+    width:198px;
+    height:26px;
+    border-style:none;
+}
+#check{
+    background-color:orangered;
+    width:198px;
+    height:26px;
+    border-style:none;
+}
