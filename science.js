@@ -304,16 +304,7 @@
         start=new Date().getTime();
         removeAllChildren(ResultArea);
         removeAllChildren(QuestionArea)
-        document.getElementById('Answer1').style.backgroundColor='white';
-        document.getElementById('Answer2').style.backgroundColor='white';
-        document.getElementById('Answer3').style.backgroundColor='white';
-        document.getElementById('Answer4').style.backgroundColor='white';
-        document.getElementById('Answer5').style.backgroundColor='white';
-        document.getElementById('Answer6').style.backgroundColor='white';
-        document.getElementById('Answer7').style.backgroundColor='white';
-        document.getElementById('Answer8').style.backgroundColor='white';
-        document.getElementById('Answer9').style.backgroundColor='white';
-        document.getElementById('Answer10').style.backgroundColor='white';
+        TextReset.onclick();
 
         const header=document.createElement('h4');
         header.innerText='問題　（　　　）に入る語句を答えなさい。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　挑戦ジャンル　'+genre+'\n';
@@ -514,7 +505,6 @@
 
    const TextReset=document.getElementById('textreset');
    TextReset.onclick=()=>{
-       if(confirm('解答欄に入力されたものを消去してもいいですか？')){
            var inputs = document.getElementsByTagName("input");
            for (var i = 0; i < inputs.length; i++) {
                 inputs[i].value = "";
@@ -529,8 +519,6 @@
             document.getElementById('Answer8').style.backgroundColor='white';
             document.getElementById('Answer9').style.backgroundColor='white';
             document.getElementById('Answer10').style.backgroundColor='white'; 
-        };
-
     }//TextReset.onclick
 
    const Check=document.getElementById('check');
@@ -654,16 +642,7 @@
         Answer[1]=undefined;
         removeAllChildren(QuestionArea);
         removeAllChildren(ResultArea);
-        document.getElementById('Answer1').style.backgroundColor='white';
-        document.getElementById('Answer2').style.backgroundColor='white';
-        document.getElementById('Answer3').style.backgroundColor='white';
-        document.getElementById('Answer4').style.backgroundColor='white';
-        document.getElementById('Answer5').style.backgroundColor='white';
-        document.getElementById('Answer6').style.backgroundColor='white';
-        document.getElementById('Answer7').style.backgroundColor='white';
-        document.getElementById('Answer8').style.backgroundColor='white';
-        document.getElementById('Answer9').style.backgroundColor='white';
-        document.getElementById('Answer10').style.backgroundColor='white';
+        TextReset.onclick();
 
         const header=document.createElement('h3');
         header.innerText='未実装です。実装されるまでお待ちください。\n実装済み：1年 生物・1年 化学・1年 物理・1年 地学・1年 全範囲'
