@@ -482,7 +482,7 @@
                     Answer[i]=['外とう膜','外套膜']
                 }                
                 else{
-                    Answer[i]=Answers[a];
+                    Answer[i]=[Answers[a]];
                 };
             }else{
                 i=i-1;
