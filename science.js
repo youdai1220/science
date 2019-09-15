@@ -5,6 +5,7 @@
     var genre;
     var min;
     var max;
+    var x;
 
     const Questions=[
         'ルーペは（　　　）に近づけて持ち、見たいものを前後に動かして、よく見える位置を探す。', //0・↓AA
@@ -346,6 +347,52 @@
         'フィリピンの沖合など、熱帯の海上で発生した熱帯低気圧のうち、中心付近の最大風速が毎秒17.2m以上になったものを（　　　）という。',        
         '8月下旬から10月上旬にかけて、長雨をもたらす停滞前線のことを（　　　）という。',
         '気圧が西の大陸で高く、東の太平洋側で低くなる、冬の日本付近の典型的な気圧配置を（　　　）という。', //↑BD
+        '1つの細胞が2つの細胞に分かれることを（　　　）という。', //↓CA
+        '核の中にあり、細胞が分裂するときに、細胞の中に見られるひも状のものを（　　　）という。', //340
+        '細胞が分裂する前に、それぞれの染色体と同じものがもう1つずつつくられ、染色体の数が2倍になることを、染色体の（　　　）という。',
+        '細胞分裂した後の2つの細胞の核にある染色体の数が、もとの細胞と同じになる細胞の増え方を（　　　）という。',
+        '生物が自らと同じと同じ種類の新しい個体をつくることを（　　　）という。',
+        '生殖のうち、体細胞分裂によって新しい個体をつくるものを（　　　）という。',
+        '生殖のうち、生殖細胞によって新しい個体をつくるものを（　　　）という。', //345
+        '植物の体の一部から新しい個体ができる無性生殖を（　　　）という。',
+        '精細胞、卵細胞、精子、卵のように、減数分裂によってつくられる細胞を（　　　）という。',
+        '被子植物の花粉の中につくられる生殖細胞を（　　　）という。',
+        '被子植物の子房の中につくられる生殖細胞を（　　　）という。',
+        '花粉がめしべの花粉につくとのばす管のことを（　　　）という。', //350
+        '動物の雌の卵巣の中につくられる生殖細胞を（　　　）という。',
+        '動物の雄の精巣の中につくられる生殖細胞を（　　　）という。',
+        '動物の生殖細胞である卵は、（　　　）でつくられる。',
+        '動物の生殖細胞である精子は、（　　　）でつくられる。',
+        '植物の卵細胞の核と、精細胞の核が合体することを（　　　）という。', //355
+        '動物の1つの精子が卵の中に入り、合体することを（　　　）という。',
+        '植物の卵細胞の核と、精細胞の核が合体すると、（　　　）になる。',
+        '動物の精子の核と、卵の核が合体すると、（　　　）になる。',
+        '植物の受精卵は分裂して（　　　）になる。',
+        '動物の受精卵が分裂してから、自分で食物をとり始めるまでの間の子のことを（　　　）という。', //360
+        '被子植物では、胚をふくむ胚珠全体は（　　　）になる。',
+        '植物では、胚が成長して親と同じようなからだをつくる過程を（　　　）という。',
+        '動物では、受精卵が分裂をくり返して、親と同じような形へ成長する過程を（　　　）という。',
+        '生殖細胞をつくるために行われる細胞分裂で、分裂したあとの細胞の染色体の数がもとの細胞の半分になる細胞の増え方を（　　　）という。。',
+        '生物の特徴となる形や性質を（　　　）という。', //365
+        '親の形質が子の形質に現れることを（　　　）という。',
+        '形質を表すもとになるものを（　　　）といい、染色体に存在している。',
+        '親、子、孫と代を重ねても同じ形質になる場合、これらをその形質の（　　　）という。',
+        'エンドウの種子の形（丸い種子としわのある種子）のように、どちらか一方しか現れない形質どうしを（　　　）という。',
+        '花粉が別の株の花のめしべにつくことを（　　　）という。', //370
+        '花粉が同じ花あるいは同じ株の別の花につくことを（　　　）という。',
+        '対になっている親の代の遺伝子は、減数分裂によって染色体とともに、それぞれ別の生殖細胞に入ることを（　　　）の法則という。',
+        'Aaという組み合わせの遺伝子を持つ子で、遺伝子Aが伝える形質しか現れず、遺伝子aが伝える形質が隠れたままであるとき、\n' + '　　' + '遺伝子Aが伝える形質を遺伝子aが伝える形質に対して（　　　）という。',
+        'Aaという組み合わせの遺伝子を持つ子で、遺伝子Aが伝える形質しか現れず、遺伝子aが伝える形質が隠れたままであるとき、\n' + '　　' + '遺伝子aが伝える形質を遺伝子Aが伝える形質に対して（　　　）という。',
+        '遺伝子の本体は染色体に含まれる（　　　）という物質である。', //375
+        'ある環境とそこにすむ生物とを1つのまとまりと見たとき、これを（　　　）という。',
+        '食べる・食べられるという関係による生物どうしのつながりを（　　　）という。',
+        '生態系において、植物などの、無機物から有機物をつくり出す生物を（　　　）という。',
+        '生態系において、動物などの、生産者がつくり出した有機物を食べる生物を（　　　）という。',
+        '自然界では、消費者は複数の生物を食べるため、食物連鎖の関係が複雑にいりくんだ網目のようになっている。このことを（　　　）という。', //380
+        '肉眼では見ることができない微小な生物を（　　　）という。',
+        '微生物のうち、カビやキノコなどのなかまを（　　　）という。',
+        '微生物のうち、乳酸菌や大腸菌などのなかまをを（　　　）という。',
+        '生態系において、生物の死がいやふんなどの、生物から出された有機物を無機物にまで分解するはたらきにかかわるものをとくに（　　　）という。', //↑CA      
     ];
  
     const Answers=[
@@ -688,17 +735,65 @@
         '台風',
         '秋雨前線',
         '西高東低',   
+        '細胞分裂',
+        '染色体', //340
+        '複製',
+        '体細胞分裂',
+        '生殖',
+        '無性生殖',
+        '有性生殖',
+        '栄養生殖',
+        '生殖細胞',
+        '精細胞',
+        '卵細胞',
+        '花粉管', //350
+        '卵',
+        '精子',
+        '卵巣',
+        '精巣',
+        '受精',
+        '受精',
+        '受精卵',
+        '受精卵',
+        '胚',
+        '胚', //360
+        '種子',
+        '発生',
+        '発生',
+        '減数分裂',
+        '形質',
+        '遺伝',
+        '遺伝子',
+        '純系',
+        '対立形質',
+        '他家受粉', //370
+        '自家受粉',
+        '分離',
+        '優性の形質or優性形質',
+        '劣性の形質or劣性形質',
+        'DNAorデオキシリボ核酸', 
+        '生態系',
+        '食物連鎖',
+        '生産者',
+        '消費者',
+        '食物網', //380
+        '微生物',
+        '菌類',
+        '細菌類',
+        '分解者', 
     ];
      
-   function removeAllChildren(element){
+    function removeAllChildren(element){
        while (element.firstChild){
            element.removeChild(element.firstChild);
         };
-    }//removeAllChlldren
-
-   var Answer=[];
-   var start;
-   function anykeyonclick(){
+     }//removeAllChlldren
+ 
+    var randoms=[];
+    var Question=[];
+    var Answer=[];
+    var start;
+    function anykeyonclick(){
         start=new Date().getTime();
         removeAllChildren(ResultArea);
         removeAllChildren(QuestionArea)
@@ -708,9 +803,20 @@
         header.innerText='問題　（　　　）に入る語句を答えなさい。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　挑戦ジャンル　'+genre+'\n';
         QuestionArea.appendChild(header);
 
-        var randoms=[];
-        var Question=[];
         for(var i=1;i<11;i++){
+            if(x===1){
+                var y=Math.round(Math.random()*3)+1;
+                if(y===1){
+                    min=0;
+                    max=35;
+                }else if(y===2){
+                    min=142;
+                    max=210;
+                }else if(y===3){
+                    min=339;
+                    max=384;
+                };
+            };
             var a=Math.floor(Math.random()*(max+1-min))+min;
             if(!randoms.includes(a)){
                 randoms.push(a);
@@ -754,6 +860,12 @@
                     Answer[i]=['大気圧','気圧']
                 }else if(a===329){
                     Answer[i]=['閉塞前線','へいそく前線']
+                }else if(a===373){
+                    Answer[i]=['優性の形質','優性形質']
+                }else if(a===374){
+                    Answer[i]=['劣性の形質','劣性形質']
+                }else if(a===375){
+                    Answer[i]=['DNA','デオキシリボ核酸']
                 }      
                 else{
                     Answer[i]=[Answers[a]];
@@ -768,283 +880,214 @@
         };
     }//anykeyonclick
 
-   const AA=document.getElementById('aa');
-   AA.onclick=()=>{
-       genre="1年 生物"
-       min=0;
-       max=35;
-       anykeyonclick();
+    const AA=document.getElementById('aa');
+    AA.onclick=()=>{
+        x=0
+        genre="1年 生物"
+        min=0;
+        max=35;
+        anykeyonclick();
     }//AA.onclick
 
-   const AB=document.getElementById('ab');
-   AB.onclick=()=>{
-       genre="1年 化学"
-       min=36;
-       max=70;
-       anykeyonclick();
+    const AB=document.getElementById('ab');
+    AB.onclick=()=>{
+        x=0
+        genre="1年 化学"
+        min=36;
+        max=70;
+        anykeyonclick();
     }//AB.onclick
 
-   const AC=document.getElementById('ac');
-   AC.onclick=()=>{
-       genre="1年 物理"
-       min=71;
-       max=107;
-       anykeyonclick();
+    const AC=document.getElementById('ac');
+    AC.onclick=()=>{
+        x=0
+        genre="1年 物理"
+        min=71;
+        max=107;
+        anykeyonclick();
     }//AC.onclick
 
-   const AD=document.getElementById('ad');
-   AD.onclick=()=>{
-       genre="1年 地学"
-       min=108;
-       max=141;
-       anykeyonclick();
+    const AD=document.getElementById('ad');
+    AD.onclick=()=>{
+        x=0
+        genre="1年 地学"
+        min=108;
+        max=141;
+        anykeyonclick();
     }//AD.onclick
 
-   const AE=document.getElementById('ae');
-   AE.onclick=()=>{
-       genre="1年 全範囲"
-       min=0;
-       max=141;
-       anykeyonclick();
+    const AE=document.getElementById('ae');
+    AE.onclick=()=>{
+        x=0
+        genre="1年 全範囲"
+        min=0;
+        max=141;
+        anykeyonclick();
     }//AE.onclick
 
-   const BA=document.getElementById('ba');
-   BA.onclick=()=>{
-       genre="2年 生物"
-       min=142;
-       max=210;
-       anykeyonclick();
+    const BA=document.getElementById('ba');
+    BA.onclick=()=>{
+        genre="2年 生物"
+        min=142;
+        max=210;
+        anykeyonclick();
     }//BA.onclick
 
-   const BB=document.getElementById('bb');
-   BB.onclick=()=>{
-       genre="2年 化学"
-       min=211;
-       max=262;
-       anykeyonclick();
+    const BB=document.getElementById('bb');
+    BB.onclick=()=>{
+        x=0
+        genre="2年 化学"
+        min=211;
+        max=262;
+        anykeyonclick();
     }//BB.onclick
    
-   const BC=document.getElementById('bc');
-   BC.onclick=()=>{
-       genre="2年 物理"
-       min=263;
-       max=301;
-       anykeyonclick();
+    const BC=document.getElementById('bc');
+    BC.onclick=()=>{
+        x=0
+        genre="2年 物理"
+        min=263;
+        max=301;
+        anykeyonclick();
     }//BC.onclick
    
-   const BD=document.getElementById('bd');
-   BD.onclick=()=>{
-       genre="2年 地学"
-       min=302;
-       max=338;
-       anykeyonclick();
+    const BD=document.getElementById('bd');
+    BD.onclick=()=>{
+        x=0
+        genre="2年 地学"
+        min=302;
+        max=338;
+        anykeyonclick();
     }//BD.onclick
    
-   const BE=document.getElementById('be');
-   BE.onclick=()=>{
-       genre="2年 全範囲"
-       min=142;
-       max=338;
-       anykeyonclick();
+    const BE=document.getElementById('be');
+    BE.onclick=()=>{
+        x=0
+        genre="2年 全範囲"
+        min=142;
+        max=338;
+        anykeyonclick();
     }//BE.onclick
    
-   const CA=document.getElementById('ca');
-   CA.onclick=()=>{
-       //genre="3年 生物"
-       //min=0;
-       //max=0;
-       //anykeyonclick();
-       Wait();
+    const CA=document.getElementById('ca');
+    CA.onclick=()=>{
+        x=0
+        genre="3年 生物"
+        min=339;
+        max=384;
+        anykeyonclick();
     }//CA.onclick
    
-   const CB=document.getElementById('cb');
-   CB.onclick=()=>{
-       //genre="3年 化学"
-       //min=0;
-       //max=0;
-       //anykeyonclick();
-       Wait();
-   }//CB.onclick
+    const CB=document.getElementById('cb');
+    CB.onclick=()=>{
+        //x=0
+        //genre="3年 化学"
+        //min=0;
+        //max=0;
+        //anykeyonclick();
+        Wait();
+    }//CB.onclick
    
-   const CC=document.getElementById('cc');
-   CC.onclick=()=>{
-       //genre="3年 物理"
-       //min=0;
-       //max=0;
-       //anykeyonclick();
-       Wait();
+    const CC=document.getElementById('cc');
+    CC.onclick=()=>{
+        //x=0
+        //genre="3年 物理"
+        //min=0;
+        //max=0;
+        //anykeyonclick();
+        Wait();
     }//CC.onclick
    
-   const CD=document.getElementById('cd');
-   CD.onclick=()=>{
-       //genre="3年 地学"
-       //min=0;
-       //max=0;
-       //anykeyonclick();
-       Wait();
+    const CD=document.getElementById('cd');
+    CD.onclick=()=>{
+        //x=0
+        //genre="3年 地学"
+        //min=0;
+        //max=0;
+        //anykeyonclick();
+        Wait();
     }//CD.onclick
    
-   const CE=document.getElementById('ce');
-   CE.onclick=()=>{
-       //genre="3年 全範囲"
-       //min=0;
-       //max=0;
-       //anykeyonclick();
-       Wait();
+    const CE=document.getElementById('ce');
+    CE.onclick=()=>{
+        //x=0
+        //genre="3年 全範囲"
+        //min=0;
+        //max=0;
+        //anykeyonclick();
+        Wait();
     }//CE.onclick
    
-   const A=document.getElementById('a');
-   A.onclick=()=>{
-       //genre="1~3年 生物"
-       //min=0;
-       //max=0;
-       //anykeyonclick();
-       Wait();
+    const A=document.getElementById('a');
+    A.onclick=()=>{
+        x=1;
+        genre="1~3年 生物"
+        anykeyonclick();
     }//A.onclick
    
-   const B=document.getElementById('b');
-   B.onclick=()=>{
-       //genre="1~3年 化学"
-       //min=0;
-       //max=0;
-       //anykeyonclick();
-       Wait();
-   }//B.onclick
+    const B=document.getElementById('b');
+    B.onclick=()=>{
+        //x=2;
+        //genre="1~3年 化学"
+        //anykeyonclick();
+        Wait();
+    }//B.onclick
    
-   const C=document.getElementById('c');
-   C.onclick=()=>{
-       //genre="1~3年 物理"
-       //min=0;
-       //max=0;
-       //anykeyonclick();
-       Wait();
+    const C=document.getElementById('c');
+    C.onclick=()=>{
+        //x=3;
+        //genre="1~3年 物理"
+        //anykeyonclick();
+        Wait();
     }//C.onclick
    
-   const D=document.getElementById('d');
-   D.onclick=()=>{
-       //genre="1~3年 地学"
-       //min=0;
-       //max=0;
-       //anykeyonclick();
-       Wait();
+    const D=document.getElementById('d');
+    D.onclick=()=>{
+        //x=4;
+        //genre="1~3年 地学"
+        //anykeyonclick();
+        Wait();
     }//D.onclick
    
-   const E=document.getElementById('e');
-   E.onclick=()=>{
-       //genre="1~3年 全範囲"
-       //min=1;
-       //max=0;
-       //anykeyonclick();
-       Wait();
+    const E=document.getElementById('e');
+    E.onclick=()=>{
+        //x=0;
+        //genre="1~3年 全範囲"
+        //min=0;
+        //max=0;
+        //anykeyonclick();
+        Wait();
     }//E.onclick
 
-   const TextReset=document.getElementById('textreset');
-   TextReset.onclick=()=>{
-           var inputs = document.getElementsByTagName("input");
-           for (var i = 0; i < inputs.length; i++) {
+    const TextReset=document.getElementById('textreset');
+    TextReset.onclick=()=>{
+            var inputs = document.getElementsByTagName("input");
+            for (var i = 0; i < inputs.length; i++) {
                 inputs[i].value = "";
+                document.getElementById(String('Answer'+(i+1))).style.backgroundColor='white'; 
             };
-            document.getElementById('Answer1').style.backgroundColor='white';
-            document.getElementById('Answer2').style.backgroundColor='white';
-            document.getElementById('Answer3').style.backgroundColor='white';
-            document.getElementById('Answer4').style.backgroundColor='white';
-            document.getElementById('Answer5').style.backgroundColor='white';
-            document.getElementById('Answer6').style.backgroundColor='white';
-            document.getElementById('Answer7').style.backgroundColor='white';
-            document.getElementById('Answer8').style.backgroundColor='white';
-            document.getElementById('Answer9').style.backgroundColor='white';
-            document.getElementById('Answer10').style.backgroundColor='white'; 
     }//TextReset.onclick
 
-   const Check=document.getElementById('check');
-   Check.onclick=()=>{
+    const Check=document.getElementById('check');
+    Check.onclick=()=>{
        if(typeof Answer[1] === "undefined" ){
            alert('挑戦する範囲を選び、問題を解いてください。')
            return;
        }else{
            var finish=new Date().getTime();
            var q=0;
-           const Answer1=document.getElementById('Answer1');
-           var answer1=Answer1.value;
-           if(answer1===Answer[1]||Answer[1].includes(answer1)){
-            q=q+1;
-            document.getElementById('Answer1').style.backgroundColor='skyblue';
-           }else{
-            document.getElementById('Answer1').style.backgroundColor='orange';
-           }
-           const Answer2=document.getElementById('Answer2');
-           var answer2=Answer2.value;
-           if(answer2===Answer[2]||Answer[2].includes(answer2)){
-            q=q+1;
-            document.getElementById('Answer2').style.backgroundColor='skyblue';
-           }else{
-            document.getElementById('Answer2').style.backgroundColor='orange';
-           }
-           const Answer3=document.getElementById('Answer3');
-           var answer3=Answer3.value;
-           if(answer3===Answer[3]||Answer[3].includes(answer3)){
-            q=q+1;
-            document.getElementById('Answer3').style.backgroundColor='skyblue';
-           }else{
-            document.getElementById('Answer3').style.backgroundColor='orange';
-           }
-           const Answer4=document.getElementById('Answer4');
-           var answer4=Answer4.value;
-           if(answer4===Answer[4]||Answer[4].includes(answer4)){
-            q=q+1;
-            document.getElementById('Answer4').style.backgroundColor='skyblue';
-           }else{
-            document.getElementById('Answer4').style.backgroundColor='orange';
-           }
-           const Answer5=document.getElementById('Answer5');
-           var answer5=Answer5.value;
-           if(answer5===Answer[5]||Answer[5].includes(answer5)){
-            q=q+1;
-            document.getElementById('Answer5').style.backgroundColor='skyblue';
-           }else{
-            document.getElementById('Answer5').style.backgroundColor='orange';
-           }
-           const Answer6=document.getElementById('Answer6');
-           var answer6=Answer6.value;
-           if(answer6===Answer[6]||Answer[6].includes(answer6)){
-            q=q+1;
-            document.getElementById('Answer6').style.backgroundColor='skyblue';
-           }else{
-            document.getElementById('Answer6').style.backgroundColor='orange';
-           }
-           const Answer7=document.getElementById('Answer7');
-           var answer7=Answer7.value;
-           if(answer7===Answer[7]||Answer[7].includes(answer7)){
-            q=q+1;
-            document.getElementById('Answer7').style.backgroundColor='skyblue';
-           }else{
-            document.getElementById('Answer7').style.backgroundColor='orange';
-           }
-           const Answer8=document.getElementById('Answer8');
-           var answer8=Answer8.value;
-           if(answer8===Answer[8]||Answer[8].includes(answer8)){
-            q=q+1;
-            document.getElementById('Answer8').style.backgroundColor='skyblue';
-           }else{
-            document.getElementById('Answer8').style.backgroundColor='orange';
-           }
-           const Answer9=document.getElementById('Answer9');
-           var answer9=Answer9.value;
-           if(answer9===Answer[9]||Answer[9].includes(answer9)){
-            q=q+1;
-            document.getElementById('Answer9').style.backgroundColor='skyblue';
-           }else{
-            document.getElementById('Answer9').style.backgroundColor='orange';
-           }
-           const Answer10=document.getElementById('Answer10');
-           var answer10=Answer10.value;
-           if(answer10===Answer[10]||Answer[10].includes(answer10)){
-            q=q+1;
-            document.getElementById('Answer10').style.backgroundColor='skyblue';
-           }else{
-            document.getElementById('Answer10').style.backgroundColor='orange';
-           }
-
+           
+           for(var i=1; i<11; i++){
+                const yourAnswer=document.getElementById(String('Answer'+i));
+                var answer=yourAnswer.value;
+                if(answer===Answer[i]||Answer[i].includes(answer)){
+                   q=q+1;
+                   document.getElementById(String('Answer'+i)).style.backgroundColor='skyblue';
+                }else{
+                 document.getElementById(String('Answer'+i)).style.backgroundColor='orange';
+                } 
+           };
+           
            if(q===10){
                var Time=(finish-start)/1000;
                var result='この調子で頑張ってください。記録：'+Time+'秒';
@@ -1070,14 +1113,14 @@
        }
     }//Check.onclick
 
-   function Wait(){
+    function Wait(){
         Answer[1]=undefined;
         removeAllChildren(QuestionArea);
         removeAllChildren(ResultArea);
         TextReset.onclick();
 
         const header=document.createElement('h3');
-        header.innerText='未実装です。実装されるまでお待ちください。\n実装済み：1年 生物・1年 化学・1年 物理・1年 地学・1年 全範囲・2年 生物・2年 化学・2年 物理・2年 地学・2年 全範囲'
+        header.innerText='未実装です。実装されるまでお待ちください。\n実装済み：1年 生物・1年 化学・1年 物理・1年 地学・1年 全範囲・2年 生物・2年 化学・2年 物理・2年 地学・2年 全範囲・3年 生物・1~3年 生物'
         QuestionArea.appendChild(header);
     }//Wait
 
