@@ -794,7 +794,7 @@
     var Answer=[];
     var start;
     function anykeyonclick(){
-        start=new Date().getTime();
+        randoms=[];
         removeAllChildren(ResultArea);
         removeAllChildren(QuestionArea)
         TextReset.onclick();
@@ -878,6 +878,7 @@
             paragraph.innerText='（'+i+'）'+' '+Question[i]+'\n';
             QuestionArea.appendChild(paragraph);
         };
+        start=new Date().getTime();
     }//anykeyonclick
 
     const AA=document.getElementById('aa');
