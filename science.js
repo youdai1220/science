@@ -494,6 +494,13 @@
         'ガスやちりが集まって、恒星に照らされて観測される天体を（　　　）という。',
         '太陽系や星座をつくる星々が属する、数千億個の恒星からなる集団を（　　　）という。',
         '恒星が数十億個から1兆個以上集まっている大集団を（　　　）という。', //485・↑CD
+        '人間の行いがもとになって、ある地域に本来いなかった生物がほかの地域から持ち込まれ、そこに定着することがある。そのような生物を（　　　）という。', //↓CE
+        '地球の温度が上昇していくことを（　　　）という。',
+        '大気中の水蒸気や二酸化炭素などは、地球から宇宙に向かう熱を吸収し、さらに再放出することで、気温の上昇をもたらす（　　　）をもつ。',
+        '温室効果をもつ気体を（　　　）という。',
+        '（　　　）にはα線、β線、γ線、X線があり、目に見えない、透過力がある、電離脳があるという性質をもつ。', //490
+        '放射線を受けることを（　　　）という。',
+        '太陽エネルギーなど、いつまでも利用できるエネルギーを（　　　）という。', //↑CE
     ];
  
     const Answers=[
@@ -983,6 +990,13 @@
         '星雲',
         '銀河系',
         '銀河',
+        '外来種',
+        '地球温暖化',
+        '温室効果',
+        '温室効果ガス',
+        '放射線', //490
+        '被ばくor被曝',
+        '再生可能エネルギー',
     ];
      
     function removeAllChildren(element){
@@ -1263,12 +1277,11 @@
    
     const CE=document.getElementById('ce');
     CE.onclick=()=>{
-        //x=0
-        //genre="3年 全範囲"
-        //min=0;
-        //max=0;
-        //anykeyonclick();
-        Wait();
+        x=0
+        genre="3年 全範囲"
+        min=339;
+        max=492;
+        anykeyonclick();
     }//CE.onclick
    
     const A=document.getElementById('a');
@@ -1301,12 +1314,11 @@
    
     const E=document.getElementById('e');
     E.onclick=()=>{
-        //x=0;
-        //genre="1~3年 全範囲"
-        //min=0;
-        //max=0;
-        //anykeyonclick();
-        Wait();
+        x=0;
+        genre="1~3年 全範囲"
+        min=0;
+        max=492;
+        anykeyonclick();
     }//E.onclick
 
     const TextReset=document.getElementById('textreset');
@@ -1362,16 +1374,4 @@
 
        }
     }//Check.onclick
-
-    function Wait(){
-        Answer[1]=undefined;
-        removeAllChildren(QuestionArea);
-        removeAllChildren(ResultArea);
-        TextReset.onclick();
-
-        const header=document.createElement('h3');
-        header.innerText='未実装です。実装されるまでお待ちください。\n実装済み：1年 生物・1年 化学・1年 物理・1年 地学・1年 全範囲・2年 生物・2年 化学・2年 物理・2年 地学・2年 全範囲 \n'+'　　　　　'+'3年 生物・3年 化学・3年 物理・3年 地学・1~3年 生物・1~3年 化学・1~3年 物理・1~3年 地学'
-        QuestionArea.appendChild(header);
-    }//Wait
-
 })();
