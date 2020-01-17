@@ -9,7 +9,7 @@
 </head>
 <body>
     <h1>中学理科単語一問一答</h1>
-    <p>挑戦したい問題の範囲を選択してください。</p>
+    <p><b><font size = "4">挑戦したい問題の範囲を選択してください。</font></b></p>
     <table id="range" rules="all" frame="border" border="3">
         <tr>
                 <td><button id="aa">1年 生物</button></td>
@@ -42,45 +42,50 @@
     </table>
     同じところを2回以上クリックすると問題が変わります。
     <div id="question-area"></div>
-    <br><span style="font-weight:bold; font-size:120%">解答欄</span> 
-    <br><span style="background-color:yellow">解答は漢字で入力してください。ひらがなやカタカナが含まれる場合にはすべて全角で、アルファベットや数字が含まれる場合にはその部分だけ半角で入力してください。</span>
+    <br><br><span style="font-weight:bold; font-size:120%">解答欄</span> 
+    <br><p style="background-color:yellow"><font size="4">解答は
+        <b style="color:blue">漢字</b> で入力してください。
+        <span style="text-decoration:underline">ひらがなやカタカナが含まれる場合</span>には
+        <b style="color:blue">すべて全角</b> で、
+        <br><span style="text-decoration:underline">アルファベットや数字が含まれる場合</span>には
+        <b style="color:blue">その部分だけ半角</b> で入力してください。</font></p>
     <table id="answer-area" rules="all" frame="border" border="3">
         <tr>
                 <td>(1)</td>
-                <td><input type="text" id="Answer1" size="20" maxlength="10"></td>
+                <td><input type="text" id="Answer1" size="20" maxlength="10" disabled="true"></td>
                 <td>(2)</td>
-                <td><input type="text" id="Answer2" size="20" maxlength="10"></td>
+                <td><input type="text" id="Answer2" size="20" maxlength="10" disabled="true"></td>
                 <td>(3)</td>
-                <td><input type="text" id="Answer3" size="20" maxlength="10"></td>
+                <td><input type="text" id="Answer3" size="20" maxlength="10" disabled="true"></td>
     
             </tr>
         <tr>
                 <td>(4)</td>
-                <td><input type="text" id="Answer4" size="20" maxlength="10"></td>
+                <td><input type="text" id="Answer4" size="20" maxlength="10" disabled="true"></td>
                 <td>(5)</td>
-                <td><input type="text" id="Answer5" size="20" maxlength="10"></td>
+                <td><input type="text" id="Answer5" size="20" maxlength="10" disabled="true"></td>
                 <td>(6)</td>
-                <td><input type="text" id="Answer6" size="20" maxlength="10"></td>
+                <td><input type="text" id="Answer6" size="20" maxlength="10" disabled="true"></td>
     
             </tr>
         </tr>
             <tr>
                 <td>(7)</td>
-                <td><input type="text" id="Answer7" size="20" maxlength="10"></td>
+                <td><input type="text" id="Answer7" size="20" maxlength="10" disabled="true"></td>
                 <td>(8)</td>
-                <td><input type="text" id="Answer8" size="20" maxlength="10"></td>
+                <td><input type="text" id="Answer8" size="20" maxlength="10" disabled="true"></td>
                 <td>(9)</td>
-                <td><input type="text" id="Answer9" size="20" maxlength="10"></td>
+                <td><input type="text" id="Answer9" size="20" maxlength="10" disabled="true"></td>
         </tr>
             <tr>
                 <td>(10)</td>
-                <td><input type="text" id="Answer10" size="20" maxlength="10"></td>
-                <td colspan="2"><button id="textreset">入力消去</button></td>
-                <td colspan="2"><button id="check">答え合わせ</button></td>
+                <td><input type="text" id="Answer10" size="20" maxlength="10" disabled="true"></td>
+                <td colspan="2"><input type="button" id="textreset" value="入力消去" disabled="true"></input></td>
+                <td colspan="2"><input type="button" id="check" value="答え合わせ" disabled="true"></input></td>
         </tr>
     </table>
     <div id="result-area"></div>
-    <p>管理人サイト　<a href="https://youdai1220.github.io/calculate/calculate.html">計算練習</a></p>
+    <p>簡単な計算の練習をしたい方はここ！　<a href="https://youdai1220.github.io/calculate/calculate.html">計算練習</a></p>
     <script src="science.js"></script>
 </body>
 </html>
