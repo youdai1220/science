@@ -1010,13 +1010,20 @@
     var Answer=[];
     var start;
     function anykeyonclick(){
-        randoms=[];
+
+        for( var xx = 1; xx < 11; xx++ ){
+            document.getElementById(String('Answer'+ xx)).disabled = false;
+        };
+        document.getElementById('textreset').disabled = false;
+        document.getElementById('check').disabled = false;
+        
+        randoms = [];
         removeAllChildren(ResultArea);
         removeAllChildren(QuestionArea)
         TextReset.onclick();
 
-        const header=document.createElement('h4');
-        header.innerText='問題　（　　　）に入る語句を答えなさい。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　挑戦ジャンル　'+genre+'\n';
+        const header = document.createElement('h4');
+        header.innerText = '【問題】　（　　　）に入る適切な語句や化学式を答えなさい。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　挑戦ジャンル　'+genre+'\n';
         QuestionArea.appendChild(header);
 
         for(var i=1;i<11;i++){
@@ -1322,31 +1329,28 @@
     }//E.onclick
 
     const TextReset=document.getElementById('textreset');
-    TextReset.onclick=()=>{
-            var inputs = document.getElementsByTagName("input");
-            for (var i = 0; i < inputs.length; i++) {
-                inputs[i].value = "";
-                document.getElementById(String('Answer'+(i+1))).style.backgroundColor='white'; 
+    TextReset.onclick = () => {
+            for (var i = 1; i < 11; i++){
+                document.getElementById(String('Answer'+ i)).value = '';
+                document.getElementById(String('Answer'+ i)).style.backgroundColor = 'white'; 
             };
     }//TextReset.onclick
 
+    
+    const yourAnswers = [];
     const Check=document.getElementById('check');
-    Check.onclick=()=>{
-       if(typeof Answer[1] === "undefined" ){
-           alert('挑戦する範囲を選び、問題を解いてください。')
-           return;
-       }else{
-           var finish=new Date().getTime();
-           var q=0;
+    Check.onclick = () => {
+
+           var finish = new Date().getTime();
+           var q = 0;
            
-           for(var i=1; i<11; i++){
-                const yourAnswer=document.getElementById(String('Answer'+i));
-                var answer=yourAnswer.value;
-                if(answer===Answer[i]||Answer[i].includes(answer)){
-                   q=q+1;
-                   document.getElementById(String('Answer'+i)).style.backgroundColor='skyblue';
+           for(var i = 1; i < 11; i++){
+                yourAnswers[i] = document.getElementById(String('Answer' + i));
+                if(yourAnswers[i].value === Answer[i] || Answer[i].includes(yourAnswers[i].value)){
+                   q = q + 1;
+                   document.getElementById(String('Answer' + i)).style.backgroundColor = 'skyblue';
                 }else{
-                 document.getElementById(String('Answer'+i)).style.backgroundColor='orange';
+                 document.getElementById(String('Answer' + i)).style.backgroundColor = 'orange';
                 } 
            };
            
@@ -1368,10 +1372,24 @@
            header.innerText='結果と答え';
            ResultArea.appendChild(header)
 
-           const paragraph=document.createElement('p');
-           paragraph.innerText= q + '問正解です。' + result +'\n \n'+ '(1)'+Answer[1]+'　(2)'+Answer[2]+'　(3)'+Answer[3]+'　(4)'+Answer[4]+'　(5)'+Answer[5]+'　(6)'+Answer[6]+'　(7)'+Answer[7]+'　(8)'+Answer[8]+'　(9)'+Answer[9]+'　(10)'+Answer[10];
-           ResultArea.appendChild(paragraph);
+           const paragraph = [];
+           paragraph[0] = document.createElement('p');
+           paragraph[0].id = 'para';
+           paragraph[0].innerText = q + '問正解です。' + result;
+           ResultArea.appendChild(paragraph[0]);
 
-       }
+           for( var yy = 1; yy < 11; yy++ ){
+               paragraph[yy] = document.createElement('span');
+               var check = yourAnswers[yy].value === Answer[yy] || Answer[yy].includes(yourAnswers[yy].value);
+               if(check === false){
+                   paragraph[yy].id = 'paraRed' + yy;
+               }else if(check === true){
+                   paragraph[yy].id = 'paraBlue' + yy;
+               }
+               paragraph[yy].innerText = '(' + yy + ')' + Answer[yy] + '　';
+               ResultArea.appendChild(paragraph[yy]);
+
+           }
+
     }//Check.onclick
 })();
