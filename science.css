@@ -12,7 +12,7 @@ table{
     font-family:'Century Gothic','游ゴシック';
     width:1000px;
 }
-button{
+button,#check,#textreset{
     font-size:100%;
     font-family:'Century Gothic','游ゴシック';
     border-style:none;
@@ -61,4 +61,14 @@ input{
     width:198px;
     height:26px;
     border-style:none;
+}
+#para{
+    background-color:pink;
+}
+#paraRed1,#paraRed2,#paraRed3,#paraRed4,#paraRed5,#paraRed6,#paraRed7,#paraRed8,#paraRed9,#paraRed10{
+    color:rgb(255, 145, 0);
+    font-weight:bold;
+}
+#paraBlue1,#paraBlue2,#paraBlue3,#paraBlue4,#paraBlue5,#paraBlue6,#paraBlue7,#paraBlue8,#paraBlue9,#paraBlue10{
+    color:skyblue;
 }
