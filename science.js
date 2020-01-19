@@ -1,13 +1,6 @@
 (function(){
     'use strict';
-    const ResultArea=document.getElementById('result-area');
-    const QuestionArea=document.getElementById('question-area');
-    var genre;
-    var min;
-    var max;
-    var x;
-
-    const Questions=[
+    const Questions = [ //問題 498行目まで
         'ルーペは（　　　）に近づけて持ち、見たいものを前後に動かして、よく見える位置を探す。', //0・↓AA
         '花は、外側からがく、（　　　）、おしべ、めしべの順になっている。',
         'めしべの花柱の先を（　　　）という。',
@@ -503,893 +496,767 @@
         '太陽エネルギーなど、いつまでも利用できるエネルギーを（　　　）という。', //↑CE
     ];
  
-    const Answers=[
-        '目', //0
-        '花弁',
-        '柱頭',
-        '子房',
-        '胚珠',
-        '離弁花',
-        '合弁花',
-        '受粉',
-        '果実',
-        '種子',
-        '種子植物', //10
-        '虫媒花',
-        '風媒花',
-        '裸子植物',
-        '被子植物', 
-        '光合成',       
-        '葉緑体',       
-        '二酸化炭素',
-        '酸素',
-        '葉脈',
-        '網状脈', //20
-        '平行脈',
-        '蒸散',
-        '気孔',
-        '道管',
-        '師管',
-        '維管束', 
-        '根毛',       
-        '双子葉類',       
-        '単子葉類',
-        '主根', //30
-        'ひげ根',
-        '合弁花類',
-        '離弁花類',
-        '胞子',
-        'コケ',  
-        'ガス',       
-        '空気',       
-        '有機物',
-        '無機物',
-        '非金属', //40
-        '密度',
-        '水上置換法',
-        '下方置換法',
-        '上方置換法',
-        '石灰水',
-        '酸素',
-        '二酸化炭素',
-        'アンモニア',
-        '水素',
-        '水', //50
-        '窒素',
-        '状態変化',
-        '蒸発',
-        '融点',
-        '沸点',
-        '純粋な物質',
-        '混合物',
-        '蒸留',
-        '水溶液',
-        '溶質', //60
-        '溶媒',      
-        '溶液',      
-        '溶解',      
-        '同心円',      
-        '溶解度',      
-        '飽和水溶液',      
-        '再結晶',      
-        '結晶',      
-        '濃度',      
-        '質量パーセント濃度', //70
-        '光源',       
-        '直進',       
-        '反射',
-        '屈折',
-        '入射光',
-        '反射光',
-        '屈折光',
-        '入射角',
-        '反射角',
-        '屈折角', //80
-        '反射',
-        '像',
-        '乱反射',        
-        '全反射',
-        '焦点',
-        '焦点距離',
-        '実像',
-        '虚像',
-        '音源',
-        '振幅', //90
-        '振動数', 
-        'ヘルツ',
-        '弾性', 
-        '弾性力',
-        '摩擦力',
-        '磁力',
-        '重力',
-        'ニュートン',
-        'フック',
-        '作用点', //100
-        '質量',
-        'グラム',
-        '圧力',     
-        'パスカル',
-        '水圧',
-        '浮力',
-        '大気圧',
-        '火山噴出物',       
-        '鉱物',       
-        '無色鉱物', //110
-        '有色鉱物',
-        '火成岩',
-        '火山岩',
-        '深成岩',
-        '斑状組織',
-        '斑晶',
-        '石基',
-        '等粒状組織',
-        '震源',
-        '震央', //120
-        '津波',
-        '隆起',
-        '沈降',
-        '初期微動',
-        '主要動',
-        'P波',
-        'S波',
-        '初期微動継続時間',
-        '震度',
-        'マグニチュード', //130
-        '風化',
-        '侵食',
-        '運搬',
-        '堆積',
-        '断層',
-        'しゅう曲or褶曲',
-        'かぎ層or鍵層',
-        '堆積岩',
-        '示相化石',
-        '示準化石', //140
-        'プレート',  
-        '葉緑体',
-        '液胞',
-        '細胞壁',
-        '核',
-        '細胞質',
-        '細胞膜',
-        '細胞の呼吸',
-        '単細胞生物',
-        '多細胞生物', //150
-        '器官',
-        '組織',
-        '肺胞',    
-        '動脈',       
-        '静脈',       
-        '毛細血管',
-        '組織液',
-        'リンパ管',
-        '赤血球',
-        'ヘモグロビン', //160
-        '白血球', 
-        '血小板',
-        '血しょうor血漿',
-        '肺循環',       
-        '体循環',
-        '動脈血',
-        '静脈血',
-        '炭水化物',
-        '脂肪',
-        'タンパク質orたんぱく質or蛋白質', //170
-        '消化',
-        '消化器官',
-        '消化管',
-        '消化液',
-        '消化酵素',
-        'アミラーゼ',
-        '吸収',
-        '排出',
-        '尿素',
-        '骨格', //180
-        '筋肉',    
-        '運動器官',       
-        '感覚器官',       
-        '神経系',
-        '中枢神経',
-        '末しょう神経or末梢神経',
-        '感覚神経',
-        '運動神経',
-        '反射',
-        'セキツイ動物or脊椎動物', //190
-        '無セキツイ動物or無脊椎動物',
-        '卵生',
-        '胎生',
-        '恒温動物',
-        '変温動物',
-        '魚類',
-        '両生類',
-        'ハチュウ類orは虫類or爬虫類orハ虫類',
-        '鳥類',
-        'ホニュウ類orほ乳類or哺乳類orホ乳類', //200
-        '節足動物',
-        '外骨格',
-        '甲殻類',
-        '昆虫類',
-        '脱皮',
-        '軟体動物',
-        '外とう膜or外套膜',
-        '相同器官',
-        '痕跡器官',
-        '進化', //210
-        '化学反応or化学変化',
-        '分解',
-        '熱分解',
-        '電気分解',
-        '原子',
-        '周期表',
-        '分子',
-        '化学式',
-        '単体',
-        '化合物', //220
-        '化合',
-        '硫化鉄',
-        '硫化銅',
-        '硫化物',
-        '化学反応式',
-        '酸化',
-        '酸化物',
-        '燃焼',
-        '酸化鉄',
-        '二酸化炭素', //230
-        '水',
-        '還元',
-        '質量保存の法則',
-        '二酸化炭素',
-        '塩化ナトリウム',
-        '酸化銅',    
-        '発熱反応',
-        'アンモニア',        
-        '吸熱反応',
-        '反応熱', //240
-        '炭酸ナトリウム',
-        '水素',
-        '2CuO',        
-        '4Ag',
-        'FeS',
-        '2MgO',
-        '2Cu',
-        'C',
-        'Na',
-        'Fe', //250 
-        'Cu',      
-        'Ag',        
-        'Au',
-        'HCl',
-        'MgO',
-        'NaCl',
-        '酸素',
-        '水素',
-        '水',
-        '二酸化炭素', //260
-        '炭酸水素ナトリウム',
-        '酸化銀',
-        '電流',
-        '導線',
-        '回路',
-        '直列つなぎ',
-        '並列つなぎ',
-        '直列回路',
-        '並列回路',
-        'アンペア', //270
-        '電圧',
-        'ボルト',
-        '抵抗or電気抵抗',
-        'オーム',
-        'オームの法則',
-        '電圧',
-        '抵抗',
-        '電流',
-        '導体',
-        '絶縁体or不導体', //280
-        '電力',
-        'ワット',
-        '熱量',
-        'ジュール',
-        '電力量',
-        '磁力',
-        '磁界',
-        '磁界の向き',
-        '磁力線',
-        'コイル', //290
-        '電磁誘導',
-        '誘導電流',
-        '直流',
-        '交流',
-        '周波数',
-        'ヘルツ',
-        '静電気',
-        '電子',
-        '放電',
-        '真空放電', //300
-        '陰極線or電子線',
-        '気象or気象現象',
-        '快晴',
-        '晴れ',
-        'くもりor曇り',
-        '放射冷却',
-        '露点',
-        '飽和',
-        '飽和水蒸気量',
-        '湿度or相対湿度', //310
-        '大気',
-        '大気圧or気圧',
-        '雲',
-        '霧',
-        '上昇気流',
-        '降水',
-        '天気図',
-        '等圧線',
-        '高気圧',
-        '低気圧', //320
-        '気団',        
-        '寒気団',
-        '暖気団',
-        '前線面',
-        '前線',
-        '停滞前線',
-        '温暖前線',
-        '寒冷前線',
-        '閉塞前線orへいそく前線',
-        '季節風', //330 
-        '海風',
-        '陸風',
-        '偏西風',
-        '梅雨',
-        '梅雨前線',
-        '台風',
-        '秋雨前線',
-        '西高東低',   
-        '細胞分裂',
-        '染色体', //340
-        '複製',
-        '体細胞分裂',
-        '生殖',
-        '無性生殖',
-        '有性生殖',
-        '栄養生殖',
-        '生殖細胞',
-        '精細胞',
-        '卵細胞',
-        '花粉管', //350
-        '卵',
-        '精子',
-        '卵巣',
-        '精巣',
-        '受精',
-        '受精',
-        '受精卵',
-        '受精卵',
-        '胚',
-        '胚', //360
-        '種子',
-        '発生',
-        '発生',
-        '減数分裂',
-        '形質',
-        '遺伝',
-        '遺伝子',
-        '純系',
-        '対立形質',
-        '他家受粉', //370
-        '自家受粉',
-        '分離',
-        '優性の形質or優性形質',
-        '劣性の形質or劣性形質',
-        'DNAorデオキシリボ核酸', 
-        '生態系',
-        '食物連鎖',
-        '生産者',
-        '消費者',
-        '食物網', //380
-        '微生物',
-        '菌類',
-        '細菌類',
-        '分解者', 
-        '電解質',
-        '非電解質',
-        'イオン',
-        '陽イオン',
-        '陰イオン',
-        '電離', //390
-        '原子核',
-        '電子',
-        '陽子',
-        '中性子',
-        'イオン式',
-        '化学電池',
-        '燃料電池',
-        '酸',
-        'アルカリ',
-        '指示薬', //400
-        'pH',
-        '中和',
-        '塩',
-        '水',
-        '硫酸バリウム',
-        '2HCl',
-        'Cu',
-        'NaCl',
-        '塩化物イオン',
-        '水酸化物イオン', //410
-        '水素イオン',
-        'ナトリウムイオン',
-        '塩素',
-        '塩化銅',
-        '水素イオン',
-        'ナトリウムイオン',
-        '銅イオン',
-        '亜鉛イオン',
-        '塩化物イオン',
-        '水酸化物イオン', //420
-        'つり合っているorつりあっている',
-        '垂直抗力',
-        '力の合成',
-        '合力',
-        '力の分解',
-        '分力',
-        '平均',
-        '瞬間',
-        '自由落下運動or自由落下',
-        '等速直線運動', //430
-        '慣性の法則',
-        '慣性',
-        '作用',
-        '反作用',
-        '仕事',
-        'ジュール',
-        '仕事の原理',
-        '仕事率',
-        'ワット',
-        'エネルギー', //440
-        'ジュール',
-        '位置エネルギー',
-        '運動エネルギー',
-        '力学的エネルギー',
-        '力学的エネルギーの保存or力学的エネルギー保存の法則or力学的・力学的エネルギー保存則',
-        '弾性エネルギー',
-        '電気エネルギー',
-        '熱エネルギー',
-        '光エネルギー',
-        '化学エネルギー', //450
-        '音エネルギー',
-        '核エネルギー',
-        'エネルギーの保存orエネルギー保存の法則orエネルギー保存則',
-        'エネルギー変換効率', 
-        '伝導or熱伝導',    
-        '対流',    
-        '放射or熱放射',
-        '南中',
-        '南中高度',
-        '日周運動', //460
-        '天球',
-        '天頂',
-        '日周運動',
-        '自転',
-        '公転',
-        '黄道',
-        '地軸',
-        '満ち欠け',
-        '公転',
-        '日食', //470
-        '月食',
-        '恒星',
-        '惑星',
-        '黒点',        
-        '太陽系',        
-        '地球型惑星',
-        '太陽型惑星',
-        '衛星',
-        '小惑星',
-        '彗星orすい星', //480 
-        '流星',
-        '星団',
-        '星雲',
-        '銀河系',
-        '銀河',
-        '外来種',
-        '地球温暖化',
-        '温室効果',
-        '温室効果ガス',
-        '放射線', //490
-        '被ばくor被曝',
-        '再生可能エネルギー',
+    const Answers = [ //答え 994行目まで
+        ['目'], //0
+        ['花弁'],
+        ['柱頭'],
+        ['子房'],
+        ['胚珠'],
+        ['離弁花'],
+        ['合弁花'],
+        ['受粉'],
+        ['果実'],
+        ['種子'],
+        ['種子植物'], //10
+        ['虫媒花'],
+        ['風媒花'],
+        ['裸子植物'],
+        ['被子植物'], 
+        ['光合成'],       
+        ['葉緑体'],       
+        ['二酸化炭素'],
+        ['酸素'],
+        ['葉脈'],
+        ['網状脈'], //20
+        ['平行脈'],
+        ['蒸散'],
+        ['気孔'],
+        ['道管'],
+        ['師管'],
+        ['維管束'], 
+        ['根毛'],       
+        ['双子葉類'],       
+        ['単子葉類'],
+        ['主根'], //30
+        ['ひげ根'],
+        ['合弁花類'],
+        ['離弁花類'],
+        ['胞子'],
+        ['コケ'],  
+        ['ガス'],       
+        ['空気'],       
+        ['有機物'],
+        ['無機物'],
+        ['非金属'], //40
+        ['密度'],
+        ['水上置換法'],
+        ['下方置換法'],
+        ['上方置換法'],
+        ['石灰水'],
+        ['酸素'],
+        ['二酸化炭素'],
+        ['アンモニア'],
+        ['水素'],
+        ['水'], //50
+        ['窒素'],
+        ['状態変化'],
+        ['蒸発'],
+        ['融点'],
+        ['沸点'],
+        ['純粋な物質'],
+        ['混合物'],
+        ['蒸留'],
+        ['水溶液'],
+        ['溶質'], //60
+        ['溶媒'],      
+        ['溶液'],      
+        ['溶解'],      
+        ['同心円'],      
+        ['溶解度'],      
+        ['飽和水溶液'],      
+        ['再結晶'],      
+        ['結晶'],      
+        ['濃度'],      
+        ['質量パーセント濃度'], //70
+        ['光源'],       
+        ['直進'],       
+        ['反射'],
+        ['屈折'],
+        ['入射光'],
+        ['反射光'],
+        ['屈折光'],
+        ['入射角'],
+        ['反射角'],
+        ['屈折角'], //80
+        ['反射'],
+        ['像'],
+        ['乱反射'],        
+        ['全反射'],
+        ['焦点'],
+        ['焦点距離'],
+        ['実像'],
+        ['虚像'],
+        ['音源'],
+        ['振幅'], //90
+        ['振動数'], 
+        ['ヘルツ'],
+        ['弾性'], 
+        ['弾性力'],
+        ['摩擦力'],
+        ['磁力'],
+        ['重力'],
+        ['ニュートン'],
+        ['フック'],
+        ['作用点'], //100
+        ['質量'],
+        ['グラム'],
+        ['圧力'],     
+        ['パスカル'],
+        ['水圧'],
+        ['浮力'],
+        ['大気圧'],
+        ['火山噴出物'],       
+        ['鉱物'],       
+        ['無色鉱物'], //110
+        ['有色鉱物'],
+        ['火成岩'],
+        ['火山岩'],
+        ['深成岩'],
+        ['斑状組織'],
+        ['斑晶'],
+        ['石基'],
+        ['等粒状組織'],
+        ['震源'],
+        ['震央'], //120
+        ['津波'],
+        ['隆起'],
+        ['沈降'],
+        ['初期微動'],
+        ['主要動'],
+        ['P波'],
+        ['S波'],
+        ['初期微動継続時間'],
+        ['震度'],
+        ['マグニチュード'], //130
+        ['風化'],
+        ['侵食'],
+        ['運搬'],
+        ['堆積'],
+        ['断層'],
+        ['しゅう曲','褶曲'],
+        ['かぎ層','鍵層'],
+        ['堆積岩'],
+        ['示相化石'],
+        ['示準化石'], //140
+        ['プレート'],  
+        ['葉緑体'],
+        ['液胞'],
+        ['細胞壁'],
+        ['核'],
+        ['細胞質'],
+        ['細胞膜'],
+        ['細胞の呼吸'],
+        ['単細胞生物'],
+        ['多細胞生物'], //150
+        ['器官'],
+        ['組織'],
+        ['肺胞'],    
+        ['動脈'],       
+        ['静脈'],       
+        ['毛細血管'],
+        ['組織液'],
+        ['リンパ管'],
+        ['赤血球'],
+        ['ヘモグロビン'], //160
+        ['白血球'], 
+        ['血小板'],
+        ['血しょう','血漿'],
+        ['肺循環'],       
+        ['体循環'],
+        ['動脈血'],
+        ['静脈血'],
+        ['炭水化物'],
+        ['脂肪'],
+        ['タンパク質','たんぱく質','蛋白質'], //170
+        ['消化'],
+        ['消化器官'],
+        ['消化管'],
+        ['消化液'],
+        ['消化酵素'],
+        ['アミラーゼ'],
+        ['吸収'],
+        ['排出'],
+        ['尿素'],
+        ['骨格'], //180
+        ['筋肉'],    
+        ['運動器官'],       
+        ['感覚器官'],       
+        ['神経系'],
+        ['中枢神経'],
+        ['末しょう神経','末梢神経'],
+        ['感覚神経'],
+        ['運動神経'],
+        ['反射'],
+        ['セキツイ動物','脊椎動物'], //190
+        ['無セキツイ動物','無脊椎動物'],
+        ['卵生'],
+        ['胎生'],
+        ['恒温動物'],
+        ['変温動物'],
+        ['魚類'],
+        ['両生類'],
+        ['ハチュウ類','は虫類','爬虫類','ハ虫類'],
+        ['鳥類'],
+        ['ホニュウ類','ほ乳類','哺乳類','ホ乳類'], //200
+        ['節足動物'],
+        ['外骨格'],
+        ['甲殻類'],
+        ['昆虫類'],
+        ['脱皮'],
+        ['軟体動物'],
+        ['外とう膜','外套膜'],
+        ['相同器官'],
+        ['痕跡器官'],
+        ['進化'], //210
+        ['化学反応','化学変化'],
+        ['分解'],
+        ['熱分解'],
+        ['電気分解'],
+        ['原子'],
+        ['周期表'],
+        ['分子'],
+        ['化学式'],
+        ['単体'],
+        ['化合物'], //220
+        ['化合'],
+        ['硫化鉄'],
+        ['硫化銅'],
+        ['硫化物'],
+        ['化学反応式'],
+        ['酸化'],
+        ['酸化物'],
+        ['燃焼'],
+        ['酸化鉄'],
+        ['二酸化炭素'], //230
+        ['水'],
+        ['還元'],
+        ['質量保存の法則'],
+        ['二酸化炭素'],
+        ['塩化ナトリウム'],
+        ['酸化銅'],    
+        ['発熱反応'],
+        ['アンモニア'],        
+        ['吸熱反応'],
+        ['反応熱'], //240
+        ['炭酸ナトリウム'],
+        ['水素'],
+        ['2CuO'],        
+        ['4Ag'],
+        ['FeS'],
+        ['2MgO'],
+        ['2Cu'],
+        ['C'],
+        ['Na'],
+        ['Fe'], //250 
+        ['Cu'],      
+        ['Ag'],        
+        ['Au'],
+        ['HCl'],
+        ['MgO'],
+        ['NaCl'],
+        ['酸素'],
+        ['水素'],
+        ['水'],
+        ['二酸化炭素'], //260
+        ['炭酸水素ナトリウム'],
+        ['酸化銀'],
+        ['電流'],
+        ['導線'],
+        ['回路'],
+        ['直列つなぎ'],
+        ['並列つなぎ'],
+        ['直列回路'],
+        ['並列回路'],
+        ['アンペア'], //270
+        ['電圧'],
+        ['ボルト'],
+        ['抵抗','電気抵抗'],
+        ['オーム'],
+        ['オームの法則'],
+        ['電圧'],
+        ['抵抗'],
+        ['電流'],
+        ['導体'],
+        ['絶縁体','不導体'], //280
+        ['電力'],
+        ['ワット'],
+        ['熱量'],
+        ['ジュール'],
+        ['電力量'],
+        ['磁力'],
+        ['磁界'],
+        ['磁界の向き'],
+        ['磁力線'],
+        ['コイル'], //290
+        ['電磁誘導'],
+        ['誘導電流'],
+        ['直流'],
+        ['交流'],
+        ['周波数'],
+        ['ヘルツ'],
+        ['静電気'],
+        ['電子'],
+        ['放電'],
+        ['真空放電'], //300
+        ['陰極線','電子線'],
+        ['気象','気象現象'],
+        ['快晴'],
+        ['晴れ'],
+        ['くもり','曇り'],
+        ['放射冷却'],
+        ['露点'],
+        ['飽和'],
+        ['飽和水蒸気量'],
+        ['湿度','相対湿度'], //310
+        ['大気'],
+        ['大気圧','気圧'],
+        ['雲'],
+        ['霧'],
+        ['上昇気流'],
+        ['降水'],
+        ['天気図'],
+        ['等圧線'],
+        ['高気圧'],
+        ['低気圧'], //320
+        ['気団'],        
+        ['寒気団'],
+        ['暖気団'],
+        ['前線面'],
+        ['前線'],
+        ['停滞前線'],
+        ['温暖前線'],
+        ['寒冷前線'],
+        ['閉塞前線','へいそく前線'],
+        ['季節風'], //330 
+        ['海風'],
+        ['陸風'],
+        ['偏西風'],
+        ['梅雨'],
+        ['梅雨前線'],
+        ['台風'],
+        ['秋雨前線'],
+        ['西高東低'],   
+        ['細胞分裂'],
+        ['染色体'], //340
+        ['複製'],
+        ['体細胞分裂'],
+        ['生殖'],
+        ['無性生殖'],
+        ['有性生殖'],
+        ['栄養生殖'],
+        ['生殖細胞'],
+        ['精細胞'],
+        ['卵細胞'],
+        ['花粉管'], //350
+        ['卵'],
+        ['精子'],
+        ['卵巣'],
+        ['精巣'],
+        ['受精'],
+        ['受精'],
+        ['受精卵'],
+        ['受精卵'],
+        ['胚'],
+        ['胚'], //360
+        ['種子'],
+        ['発生'],
+        ['発生'],
+        ['減数分裂'],
+        ['形質'],
+        ['遺伝'],
+        ['遺伝子'],
+        ['純系'],
+        ['対立形質'],
+        ['他家受粉'], //370
+        ['自家受粉'],
+        ['分離'],
+        ['優性の形質','優性形質'],
+        ['劣性の形質','劣性形質'],
+        ['DNA','デオキシリボ核酸'], 
+        ['生態系'],
+        ['食物連鎖'],
+        ['生産者'],
+        ['消費者'],
+        ['食物網'], //380
+        ['微生物'],
+        ['菌類'],
+        ['細菌類'],
+        ['分解者'], 
+        ['電解質'],
+        ['非電解質'],
+        ['イオン'],
+        ['陽イオン'],
+        ['陰イオン'],
+        ['電離'], //390
+        ['原子核'],
+        ['電子'],
+        ['陽子'],
+        ['中性子'],
+        ['イオン式'],
+        ['化学電池'],
+        ['燃料電池'],
+        ['酸'],
+        ['アルカリ'],
+        ['指示薬'], //400
+        ['pH'],
+        ['中和'],
+        ['塩'],
+        ['水'],
+        ['硫酸バリウム'],
+        ['2HCl'],
+        ['Cu'],
+        ['NaCl'],
+        ['塩化物イオン'],
+        ['水酸化物イオン'], //410
+        ['水素イオン'],
+        ['ナトリウムイオン'],
+        ['塩素'],
+        ['塩化銅'],
+        ['水素イオン'],
+        ['ナトリウムイオン'],
+        ['銅イオン'],
+        ['亜鉛イオン'],
+        ['塩化物イオン'],
+        ['水酸化物イオン'], //420
+        ['つり合っている','つりあっている'],
+        ['垂直抗力'],
+        ['力の合成'],
+        ['合力'],
+        ['力の分解'],
+        ['分力'],
+        ['平均'],
+        ['瞬間'],
+        ['自由落下運動','自由落下'],
+        ['等速直線運動'], //430
+        ['慣性の法則'],
+        ['慣性'],
+        ['作用'],
+        ['反作用'],
+        ['仕事'],
+        ['ジュール'],
+        ['仕事の原理'],
+        ['仕事率'],
+        ['ワット'],
+        ['エネルギー'], //440
+        ['ジュール'],
+        ['位置エネルギー'],
+        ['運動エネルギー'],
+        ['力学的エネルギー'],
+        ['力学的エネルギーの保存','力学的エネルギー保存の法則','力学的エネルギー保存則'],
+        ['弾性エネルギー'],
+        ['電気エネルギー'],
+        ['熱エネルギー'],
+        ['光エネルギー'],
+        ['化学エネルギー'], //450
+        ['音エネルギー'],
+        ['核エネルギー'],
+        ['エネルギーの保存','エネルギー保存の法則','エネルギー保存則'],
+        ['エネルギー変換効率'],
+        ['伝導','熱伝導'],    
+        ['対流'],    
+        ['放射','熱放射'],
+        ['南中'],
+        ['南中高度'],
+        ['日周運動'], //460
+        ['天球'],
+        ['天頂'],
+        ['日周運動'],
+        ['自転'],
+        ['公転'],
+        ['黄道'],
+        ['地軸'],
+        ['満ち欠け'],
+        ['公転'],
+        ['日食'], //470
+        ['月食'],
+        ['恒星'],
+        ['惑星'],
+        ['黒点'],        
+        ['太陽系'],        
+        ['地球型惑星'],
+        ['太陽型惑星'],
+        ['衛星'],
+        ['小惑星'],
+        ['彗星','すい星'], //480 
+        ['流星'],
+        ['星団'],
+        ['星雲'],
+        ['銀河系'],
+        ['銀河'],
+        ['外来種'],
+        ['地球温暖化'],
+        ['温室効果'],
+        ['温室効果ガス'],
+        ['放射線'], //490
+        ['被ばく','被曝'],
+        ['再生可能エネルギー']
     ];
      
-    function removeAllChildren(element){
-       while (element.firstChild){
-           element.removeChild(element.firstChild);
+    function removeAllChildren(element){ //elementに子要素がある限り削除する関数
+        while (element.firstChild){
+            element.removeChild(element.firstChild);
         };
      }//removeAllChlldren
  
-    var randoms=[];
-    var Question=[];
-    var Answer=[];
-    var start;
-    function anykeyonclick(){
+    var Question = []; //出題する問題(10問)を入れる配列
+    var Answer = []; //出題する問題に対する答えを入れる配列
+    function anykeyonclick(genre, min, max, x){ //問題を出題するための処理
 
-        for( var xx = 1; xx < 11; xx++ ){
+        const ResultArea=document.getElementById('result-area'); //ResultAreaとQuestionAreaを取得
+        const QuestionArea=document.getElementById('question-area');
+        removeAllChildren(ResultArea); //ResultAreaとQuestionAreaの子要素を消去
+        removeAllChildren(QuestionArea);
+        TextReset.onclick(); //解答欄を初期化
+
+        const header = document.createElement('h4'); //問題の説明
+        header.innerText = '【問題】　（　　　）に入る適切な語句や化学式を答えなさい。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　挑戦ジャンル　'+genre+'\n';
+        QuestionArea.appendChild(header);
+
+        var randoms = []; //どの問題を出題したかを入れる配列
+        for(var i = 1; i < 11; i++){ //問題数は10問なので問題を出す処理は10回繰り返す
+            var y = Math.round(Math.random() * 3) + 1;
+            if(x　===　1){ //「1~3年 〇〇」を選んだ場合はyの値によってminとmaxを決めなおす（1066行目まで）
+                if(y === 1){
+                    min = 0;
+                    max = 35;
+                }else if(y === 2){
+                    min = 142;
+                    max = 210;
+                }else if(y === 3){
+                    min = 339;
+                    max = 384;
+                };
+            }
+            else if(x === 2){
+                if(y === 1){
+                    min = 36;
+                    max = 70;
+                }else if(y === 2){
+                    min = 211;
+                    max = 262;
+                }else if(y === 3){
+                    min = 385;
+                    max = 420;
+                };
+            }
+            else if(x === 3){
+                if(y === 1){
+                    min = 71;
+                    max = 107;
+                }else if(y === 2){
+                    min = 263;
+                    max = 301;
+                }else if(y === 3){
+                    min = 421;
+                    max = 457;
+                };
+            }
+            else if(x === 4){
+                if(y === 1){
+                    min = 108;
+                    max = 141;
+                }else if(y === 2){
+                    min = 302;
+                    max = 338;
+                }else if(y === 3){
+                    min = 458;
+                    max = 485;
+                };
+            };
+
+            var a = Math.floor(Math.random() * (max + 1 - min)) + min; //どの問題を出すか乱数で決める
+            if(!randoms.includes(a)){ //aがrandomsにない場合はその問題を出題する            
+                randoms.push(a); //aをrandomsに加える
+                Question[i] = Questions[a];
+                Answer[i] = Answers[a];
+            }else{ //aがrandomsにある場合はやり直す
+                i = i - 1;
+                continue;
+            };
+            var paragraphQuestion=document.createElement('span'); //QuestionAreaに選ばれた問題を表示させる
+            paragraphQuestion.innerText='（' + i + '）' + ' ' + Question[i] + '\n';
+            QuestionArea.appendChild(paragraphQuestion);
+
+        };
+        
+        for( var xx = 1; xx < 11; xx++ ){ //解答欄に入力したり、「入力消去」「答え合わせ」を押したりできるようにする
             document.getElementById(String('Answer'+ xx)).disabled = false;
         };
         document.getElementById('textreset').disabled = false;
         document.getElementById('check').disabled = false;
-        
-        randoms = [];
-        removeAllChildren(ResultArea);
-        removeAllChildren(QuestionArea)
-        TextReset.onclick();
 
-        const header = document.createElement('h4');
-        header.innerText = '【問題】　（　　　）に入る適切な語句や化学式を答えなさい。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　挑戦ジャンル　'+genre+'\n';
-        QuestionArea.appendChild(header);
-
-        for(var i=1;i<11;i++){
-            if(x===1){
-                var y=Math.round(Math.random()*3)+1;
-                if(y===1){
-                    min=0;
-                    max=35;
-                }else if(y===2){
-                    min=142;
-                    max=210;
-                }else if(y===3){
-                    min=339;
-                    max=384;
-                };
-            };
-            if(x===2){
-                var y=Math.round(Math.random()*3)+1;
-                if(y===1){
-                    min=36;
-                    max=70;
-                }else if(y===2){
-                    min=211;
-                    max=262;
-                }else if(y===3){
-                    min=385;
-                    max=420;
-                };
-            };
-            if(x===3){
-                var y=Math.round(Math.random()*3)+1;
-                if(y===1){
-                    min=71;
-                    max=107;
-                }else if(y===2){
-                    min=263;
-                    max=301;
-                }else if(y===3){
-                    min=421;
-                    max=457;
-                };
-            };
-            if(x===4){
-                var y=Math.round(Math.random()*3)+1;
-                if(y===1){
-                    min=108;
-                    max=141;
-                }else if(y===2){
-                    min=302;
-                    max=338;
-                }else if(y===3){
-                    min=458;
-                    max=485;
-                };
-            };
-            var a=Math.floor(Math.random()*(max+1-min))+min;
-            if(!randoms.includes(a)){
-                randoms.push(a);
-                Question[i]=Questions[a];
-
-                if(a===136){
-                    Answer[i]=['しゅう曲','褶曲'];
-                }else if(a===137){
-                    Answer[i]=['かぎ層','鍵層'];
-                }else if(a===163){
-                    Answer[i]=['血しょう','血漿'];
-                }else if(a===170){
-                    Answer[i]=['タンパク質','たんぱく質','蛋白質'];
-                }else if(a===186){
-                    Answer[i]=['末しょう神経','末梢神経'];
-                }else if(a===190){
-                    Answer[i]=['セキツイ動物','脊椎動物'];
-                }else if(a===191){
-                    Answer[i]=['無セキツイ動物','無脊椎動物'];
-                }else if(a===198){
-                    Answer[i]=['ハチュウ類','爬虫類','ハ虫類','は虫類'];
-                }else if(a===200){
-                    Answer[i]=['ホニュウ類','哺乳類','ホ乳類','ほ乳類'];
-                }else if(a===207){
-                    Answer[i]=['外とう膜','外套膜'];
-                }else if(a===211){
-                    Answer[i]=['化学変化','化学反応'];
-                }else if(a===273){
-                    Answer[i]=['抵抗','電気抵抗']
-                }else if(a===280){
-                    Answer[i]=['絶縁体','不導体']
-                }else if(a===301){
-                    Answer[i]=['陰極線','電子線']
-                }else if(a===302){
-                    Answer[i]=['気象','気象現象']
-                }else if(a===305){
-                    Answer[i]=['くもり','曇り']
-                }else if(a===310){
-                    Answer[i]=['湿度','相対湿度']
-                }else if(a===312){
-                    Answer[i]=['大気圧','気圧']
-                }else if(a===329){
-                    Answer[i]=['閉塞前線','へいそく前線']
-                }else if(a===373){
-                    Answer[i]=['優性の形質','優性形質']
-                }else if(a===374){
-                    Answer[i]=['劣性の形質','劣性形質']
-                }else if(a===375){
-                    Answer[i]=['DNA','デオキシリボ核酸']
-                }else if(a===421){
-                    Answer[i]=['つり合っている','つりあっている']
-                }else if(a===429){
-                    Answer[i]=['自由落下運動','自由落下']
-                }else if(a===445){
-                    Answer[i]=['力学的エネルギーの保存','力学的エネルギー保存の法則','力学的エネルギー保存則']
-                }else if(a===453){
-                    Answer[i]=['エネルギーの保存','エネルギー保存の法則','エネルギー保存則']
-                }else if(a===455){
-                    Answer[i]=['伝導','熱伝導']
-                }else if(a===457){
-                    Answer[i]=['放射','熱放射']
-                }else if(a===480){
-                    Answer[i]=['すい星','彗星']
-                }          
-                else{
-                    Answer[i]=[Answers[a]];
-                };
-            }else{
-                i=i-1;
-                continue;
-            };
-            var paragraph=document.createElement('span');
-            paragraph.innerText='（'+i+'）'+' '+Question[i]+'\n';
-            QuestionArea.appendChild(paragraph);
-        };
-        start=new Date().getTime();
     }//anykeyonclick
 
-    const AA=document.getElementById('aa');
-    AA.onclick=()=>{
-        x=0
-        genre="1年 生物"
-        min=0;
-        max=35;
-        anykeyonclick();
-    }//AA.onclick
+    const AA = document.getElementById('aa'); //選ばれた範囲によって、anykeyonclick関数のgenre, min, max, xが変化する（1190行目まで）
+    AA.onclick = () => {
+        anykeyonclick("1年 生物", 0, 35, 0);
+    }; //AA.onclick
 
-    const AB=document.getElementById('ab');
-    AB.onclick=()=>{
-        x=0
-        genre="1年 化学"
-        min=36;
-        max=70;
-        anykeyonclick();
-    }//AB.onclick
+    const AB = document.getElementById('ab');
+    AB.onclick = () => {
+        anykeyonclick("1年 化学", 36, 70, 0);
+    }; //AB.onclick
 
-    const AC=document.getElementById('ac');
-    AC.onclick=()=>{
-        x=0
-        genre="1年 物理"
-        min=71;
-        max=107;
-        anykeyonclick();
-    }//AC.onclick
+    const AC = document.getElementById('ac');
+    AC.onclick = () => {
+        anykeyonclick("1年 物理", 71, 107, 0);
+    }; //AC.onclick
 
-    const AD=document.getElementById('ad');
-    AD.onclick=()=>{
-        x=0
-        genre="1年 地学"
-        min=108;
-        max=141;
-        anykeyonclick();
-    }//AD.onclick
+    const AD = document.getElementById('ad');
+    AD.onclick = () => {
+        anykeyonclick("1年 地学", 108, 141, 0);
+    }; //AD.onclick
 
-    const AE=document.getElementById('ae');
-    AE.onclick=()=>{
-        x=0
-        genre="1年 全範囲"
-        min=0;
-        max=141;
-        anykeyonclick();
-    }//AE.onclick
+    const AE = document.getElementById('ae');
+    AE.onclick = () => {
+        anykeyonclick("1年 全範囲", 0, 141 ,0);
+    }; //AE.onclick
 
-    const BA=document.getElementById('ba');
-    BA.onclick=()=>{
-        genre="2年 生物"
-        min=142;
-        max=210;
-        anykeyonclick();
-    }//BA.onclick
+    const BA = document.getElementById('ba');
+    BA.onclick = () => {
+        anykeyonclick("2年 生物", 142, 210, 0);
+    }; //BA.onclick
 
-    const BB=document.getElementById('bb');
-    BB.onclick=()=>{
-        x=0
-        genre="2年 化学"
-        min=211;
-        max=262;
-        anykeyonclick();
-    }//BB.onclick
+    const BB = document.getElementById('bb');
+    BB.onclick = () => {
+        anykeyonclick("2年 化学", 211, 262, 0);
+    }; //BB.onclick
    
-    const BC=document.getElementById('bc');
-    BC.onclick=()=>{
-        x=0
-        genre="2年 物理"
-        min=263;
-        max=301;
-        anykeyonclick();
-    }//BC.onclick
+    const BC = document.getElementById('bc');
+    BC.onclick = () => {
+        anykeyonclick("2年 物理", 263, 301, 0);
+    }; //BC.onclick
    
-    const BD=document.getElementById('bd');
-    BD.onclick=()=>{
-        x=0
-        genre="2年 地学"
-        min=302;
-        max=338;
-        anykeyonclick();
-    }//BD.onclick
+    const BD = document.getElementById('bd');
+    BD.onclick = () => {
+        anykeyonclick("2年 地学", 302, 338, 0);
+    }; //BD.onclick
    
-    const BE=document.getElementById('be');
-    BE.onclick=()=>{
-        x=0
-        genre="2年 全範囲"
-        min=142;
-        max=338;
-        anykeyonclick();
-    }//BE.onclick
+    const BE = document.getElementById('be');
+    BE.onclick = () => {
+        anykeyonclick("2年 全範囲", 142, 338 , 0);
+    }; //BE.onclick
    
-    const CA=document.getElementById('ca');
-    CA.onclick=()=>{
-        x=0
-        genre="3年 生物"
-        min=339;
-        max=384;
-        anykeyonclick();
-    }//CA.onclick
+    const CA = document.getElementById('ca');
+    CA.onclick = () => {
+        anykeyonclick("3年 生物", 339, 384, 0);
+    }; //CA.onclick
    
-    const CB=document.getElementById('cb');
-    CB.onclick=()=>{
-        x=0
-        genre="3年 化学"
-        min=385;
-        max=420;
-        anykeyonclick();
-    }//CB.onclick
+    const CB = document.getElementById('cb');
+    CB.onclick = () => {
+        anykeyonclick("3年 化学", 385, 420, 0);
+    }; //CB.onclick
    
-    const CC=document.getElementById('cc');
-    CC.onclick=()=>{
-        x=0
-        genre="3年 物理"
-        min=421;
-        max=457;
-        anykeyonclick();
-    }//CC.onclick
+    const CC = document.getElementById('cc');
+    CC.onclick = () => {
+        anykeyonclick("3年 物理", 421, 457 ,0);
+    }; //CC.onclick
    
-    const CD=document.getElementById('cd');
-    CD.onclick=()=>{
-        x=0
-        genre="3年 地学"
-        min=458;
-        max=485;
-        anykeyonclick();
-    }//CD.onclick
+    const CD = document.getElementById('cd');
+    CD.onclick = () => {
+        anykeyonclick("3年 地学", 458, 485, 0);
+    }; //CD.onclick
    
-    const CE=document.getElementById('ce');
-    CE.onclick=()=>{
-        x=0
-        genre="3年 全範囲"
-        min=339;
-        max=492;
-        anykeyonclick();
-    }//CE.onclick
+    const CE = document.getElementById('ce');
+    CE.onclick = () => {
+        anykeyonclick("3年 全範囲", 339, 492, 0);
+    }; //CE.onclick
    
-    const A=document.getElementById('a');
-    A.onclick=()=>{
-        x=1;
-        genre="1~3年 生物"
-        anykeyonclick();
-    }//A.onclick
+    const A = document.getElementById('a');
+    A.onclick = () => {
+        anykeyonclick("1~3年 生物", 0, 0 ,1);
+    }; //A.onclick
    
-    const B=document.getElementById('b');
-    B.onclick=()=>{
-        x=2;
-        genre="1~3年 化学"
-        anykeyonclick();
-    }//B.onclick
+    const B = document.getElementById('b');
+    B.onclick = () => {
+        anykeyonclick("1~3年 化学", 0, 0, 2);
+    }; //B.onclick
    
-    const C=document.getElementById('c');
-    C.onclick=()=>{
-        x=3;
-        genre="1~3年 物理"
-        anykeyonclick();
-    }//C.onclick
+    const C = document.getElementById('c');
+    C.onclick = () => {
+        anykeyonclick("1~3年 物理", 0, 0, 3);
+    }; //C.onclick
    
-    const D=document.getElementById('d');
-    D.onclick=()=>{
-        x=4;
-        genre="1~3年 地学"
-        anykeyonclick();
-    }//D.onclick
+    const D = document.getElementById('d');
+    D.onclick = () => {
+        anykeyonclick("1~3年 地学", 0, 0, 4);
+    }; //D.onclick
    
-    const E=document.getElementById('e');
-    E.onclick=()=>{
-        x=0;
-        genre="1~3年 全範囲"
-        min=0;
-        max=492;
-        anykeyonclick();
-    }//E.onclick
+    const E = document.getElementById('e');
+    E.onclick = () => {
+        anykeyonclick("1~3年 全範囲", 0 ,492, 0);
+    }; //E.onclick
 
-    const TextReset=document.getElementById('textreset');
-    TextReset.onclick = () => {
+    const TextReset = document.getElementById('textreset'); //TextResetを取得
+    TextReset.onclick = () => { //解答欄を初期化する処理・「入力消去」が押されたとき実行
             for (var i = 1; i < 11; i++){
                 document.getElementById(String('Answer'+ i)).value = '';
                 document.getElementById(String('Answer'+ i)).style.backgroundColor = 'white'; 
             };
-    }//TextReset.onclick
+    }; //TextReset.onclick
 
-    
-    const yourAnswers = [];
-    const Check=document.getElementById('check');
-    Check.onclick = () => {
+    const yourAnswers = []; //入力された解答を入れる配列
+    const Check=document.getElementById('check'); //Checkを取得
+    Check.onclick = () => { //答え合わせをする処理・「答え合わせ」が押されたとき実行
 
-           var finish = new Date().getTime();
-           var q = 0;
-           
-           for(var i = 1; i < 11; i++){
-                yourAnswers[i] = document.getElementById(String('Answer' + i));
-                if(yourAnswers[i].value === Answer[i] || Answer[i].includes(yourAnswers[i].value)){
-                   q = q + 1;
-                   document.getElementById(String('Answer' + i)).style.backgroundColor = 'skyblue';
+           var q = 0; //正解数を入れる変数
+           for(var i = 1; i < 11; i++){ //問題数は10問なので答え合わせは10回繰り返す
+                yourAnswers[i] = document.getElementById(String('Answer' + i)); //yourAnswersに入力された解答を1問ずつ入れる
+                if(Answer[i].includes(yourAnswers[i].value)){ //入力された解答が答えの配列に含まれている場合、正解とする
+                   q = q + 1; //正解数カウントを1加える
+                   document.getElementById(String('Answer' + i)).style.backgroundColor = 'skyblue'; //正解した問題の解答欄は水色にする
                 }else{
-                 document.getElementById(String('Answer' + i)).style.backgroundColor = 'orange';
+                 document.getElementById(String('Answer' + i)).style.backgroundColor = 'orange'; //不正解だった問題の解答欄はオレンジにする
                 } 
            };
-           
-           if(q===10){
-               var Time=(finish-start)/1000;
-               var result='この調子で頑張ってください。記録：'+Time+'秒';
-           }else if(7<q&&q<10){
-               var result='全問正解までもう少し。がんばれ。'
-           }else if(3<q&&q<8){
-               var result='半分程度はできています。もう少し勉強しよう。'
-           }else if(q<4){
-               var result='あまりできていません。勉強しよう。'
-           }
 
-           const ResultArea=document.getElementById('result-area');
-           removeAllChildren(ResultArea);
+            if(q === 10){ //正解数によって結果の表示が変わる
+                var result = 'Excellent!';
+                var result2 = 'この調子で頑張ってください。';
+            }else if(7 < q && q < 10){
+                var result = 'Good!';
+                var result2 = '全問正解までもう少し。がんばれ。';
+            }else if(4 < q && q < 8){
+                var result = 'Average';
+                var result2 = '半分程度はできています。もう少し勉強しよう。';
+            }else if(2 < q && q < 5){
+                var result = 'Below Average';
+                var result2 = 'あまりできていません。勉強しよう。';
+            }else if(q < 3){
+                var result = 'Bad';
+                var result2 = 'ほぼできていません。1からやり直してみましょう。';
+            };
 
-           const header=document.createElement('h3');
+           const ResultArea=document.getElementById('result-area'); //ResultAreaを取得
+           removeAllChildren(ResultArea); //ResultAreaの子要素を消去
+
+           const header=document.createElement('h3'); //ResultAreaに表示をつくる
            header.innerText='結果と答え';
            ResultArea.appendChild(header)
 
-           const paragraph = [];
-           paragraph[0] = document.createElement('p');
-           paragraph[0].id = 'para';
-           paragraph[0].innerText = q + '問正解です。' + result;
-           ResultArea.appendChild(paragraph[0]);
+           const paragraph = []; //ResultAreaに表示する文字列を入れる配列
+
+           paragraph[0] = document.createElement('span'); //paragraph[0]の表示をつくる
+           paragraph[0].id = 'para0'; //paragraph[0]のidを取得する・para0のデザインはCSSで変える
+           paragraph[0].innerText = result + '　'; //paragraph[0]の中身はresult
+           ResultArea.appendChild(paragraph[0]); //ResultAreaに表示
+
+           paragraph[100] = document.createElement('span'); //paragraph[100]の表示をつくる
+           paragraph[100].id = 'para100'; //paragraph[100]のidを取得する・para100のデザインはCSSで変える
+           paragraph[100].innerText = q + '問正解です。' + result2 + '\n \n'; //paragraph[100]の中身は正解した問題数とresult2
+           ResultArea.appendChild(paragraph[100]); //ResultAreaに表示
 
            for( var yy = 1; yy < 11; yy++ ){
-               paragraph[yy] = document.createElement('span');
-               var check = yourAnswers[yy].value === Answer[yy] || Answer[yy].includes(yourAnswers[yy].value);
-               if(check === false){
-                   paragraph[yy].id = 'paraRed' + yy;
-               }else if(check === true){
+               paragraph[yy] = document.createElement('span'); //paragraph[yy]の表示をつくる
+               if(Answer[yy].includes(yourAnswers[yy].value)){ //正解した問題と不正解だった問題では答えの文字列のidを変える・それぞれデザインをCSSで変える
                    paragraph[yy].id = 'paraBlue' + yy;
-               }
-               paragraph[yy].innerText = '(' + yy + ')' + Answer[yy] + '　';
-               ResultArea.appendChild(paragraph[yy]);
+               }else{
+                   paragraph[yy].id = 'paraRed' + yy;
+               };
+               paragraph[yy].innerText = '(' + yy + ')' + Answer[yy] + '　'; //paragraph[yy]の中身はそれぞれの問題の答え
+               ResultArea.appendChild(paragraph[yy]); //ResultAreaに表示
 
-           }
+           };
 
-    }//Check.onclick
+    }; //Check.onclick
 })();
