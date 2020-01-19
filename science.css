@@ -62,8 +62,13 @@ input{
     height:26px;
     border-style:none;
 }
-#para{
+#para100{
     background-color:pink;
+}
+#para0{
+    color:yellow;
+    font-size:140%;
+    font-family:'Monotype Corsiva';
 }
 #paraRed1,#paraRed2,#paraRed3,#paraRed4,#paraRed5,#paraRed6,#paraRed7,#paraRed8,#paraRed9,#paraRed10{
     color:rgb(255, 145, 0);
